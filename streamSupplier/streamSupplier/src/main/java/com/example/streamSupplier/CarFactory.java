@@ -4,6 +4,7 @@ import com.example.streamSupplier.entity.Car;
 import com.example.streamSupplier.entity.Engine;
 import com.example.streamSupplier.entity.MotorType;
 import com.example.streamSupplier.service.EconomyCarService;
+import com.example.streamSupplier.service.EconomyElectricCarService;
 import com.example.streamSupplier.service.MuscleCarService;
 import com.example.streamSupplier.service.OffRoadService;
 
@@ -21,14 +22,15 @@ public class CarFactory {
         carMap.put(MotorType.ECONOMY.name(), EconomyCarService::new);
         carMap.put(MotorType.MUSCLE_CAR.name(), MuscleCarService::new);
         carMap.put(MotorType.OFF_ROAD.name(), OffRoadService::new);
+        carMap.put(MotorType.ECONOMY_ELECTRIC.name(), EconomyElectricCarService::new);
 
         CAR_SUPPLIER = Collections.unmodifiableMap(carMap);
 
     }
 
 
-    public Car build(String name) {
-        final Supplier<Engine> iEngine = CAR_SUPPLIER.get(name);
+    public Car build(String name, MotorType motorType) {
+        final Supplier<Engine> iEngine = CAR_SUPPLIER.get(motorType.name());
         return (Car) iEngine.get().motorSettings(name);
     }
 

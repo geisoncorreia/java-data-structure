@@ -4,13 +4,13 @@ import com.example.streamSupplier.entity.Car;
 import com.example.streamSupplier.entity.Engine;
 import com.example.streamSupplier.entity.FuelType;
 
-public class EconomyCarService implements Engine {
+public class EconomyElectricCarService implements Engine {
 
-    public EconomyCarService() {
+    public EconomyElectricCarService() {
     }
 
     @Override
     public Car motorSettings(String name) {
-        return new Car(name, "1.0", FuelType.ELECTRIC);
+        return new Car(name, "Power Electric: 1.0", FuelType.GASOLINE);
     }
 }
